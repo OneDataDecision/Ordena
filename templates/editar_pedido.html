@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Pedido</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-warning text-dark">
+            <h3 class="mb-0">Editar pedido</h3>
+        </div>
+        <div class="card-body">
+            <form action="/actualizar/{{ pedido['ID Pedido'] }}" method="post" class="row g-3">
+
+                <div class="col-md-6">
+                    <label class="form-label">Hora Recogida</label>
+                    <input type="time" name="hora_recogida" value="{{ pedido['Hora Recogida Menaje'] }}" class="form-control">
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Estado Recogida</label>
+                    <select name="estado_recogida" class="form-select">
+                        <option value="Pendiente" {% if pedido['Estado Recogida'] == 'Pendiente' %}selected{% endif %}>Pendiente</option>
+                        <option value="Recogido" {% if pedido['Estado Recogida'] == 'Recogido' %}selected{% endif %}>Recogido</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Condición del Menaje</label>
+                    <select name="condicion_menaje" class="form-select">
+                        {% for estado in ["Bueno", "Regular", "Dañado", "Faltante"] %}
+                        <option value="{{ estado }}" {% if pedido['Condición Menaje'] == estado %}selected{% endif %}>{{ estado }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-md-12">
+                    <label class="form-label">Observaciones sobre el menaje</label>
+                    <textarea name="observaciones_menaje" rows="3" class="form-control">{{ pedido['Observaciones Menaje'] }}</textarea>
+                </div>
+
+                <div class="col-md-6">
+                    <input type="checkbox" name="firmado" class="form-check-input me-2" {% if pedido['Firmado por Enfermería'] == 'Sí' %}checked{% endif %}>
+                    <label class="form-check-label">Firmado por Enfermería</label>
+                </div>
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    <a href="/ver_pedidos" class="btn btn-secondary ms-2">Volver</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

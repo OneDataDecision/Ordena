@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte Diario - Ordéna</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Reporte Diario de Servicios</h2>
+
+    <form method="POST" class="row g-3 mb-4">
+        <div class="col-md-3">
+            <label class="form-label">Fecha Inicio</label>
+            <input type="date" name="fecha_ini" value="{{ fecha_ini or '' }}" class="form-control">
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Fecha Fin</label>
+            <input type="date" name="fecha_fin" value="{{ fecha_fin or '' }}" class="form-control">
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Servicio</label>
+            <select name="servicio" class="form-select">
+                <option value="Todos">Todos</option>
+                {% for s in servicios %}
+                <option value="{{ s }}" {% if servicio_actual == s %}selected{% endif %}>{{ s }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Dieta</label>
+            <select name="dieta" class="form-select">
+                <option value="Todas">Todas</option>
+                {% for d in dietas %}
+                <option value="{{ d }}" {% if dieta_actual == d %}selected{% endif %}>{{ d }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-12 text-end">
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+            <a href="/reporte_diario" class="btn btn-outline-secondary">Limpiar</a>
+        </div>
+    </form>
+
+    <table class="table table-bordered table-striped table-sm">
+        <thead class="table-primary text-center">
+            <tr>
+                <th>Fecha</th>
+                <th>Servicio</th>
+                <th>Dieta</th>
+                <th>Cantidad</th>
+                <th>Valor Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fila in resumen %}
+            <tr>
+                <td>{{ fila['Fecha'] }}</td>
+                <td>{{ fila['Servicio'] }}</td>
+                <td>{{ fila['Dieta'] }}</td>
+                <td class="text-end">{{ fila['Cantidad'] }}</td>
+                <td class="text-end">${{ "{:,.0f}".format(fila['Valor Total']) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between mt-4">
+        <a href="/" class="btn btn-secondary">← Volver</a>
+        <a href="/static/reporte_diario.xlsx" download class="btn btn-success">📥 Exportar a Excel</a>
+    </div>
+
+    <p class="text-center text-muted mt-4" style="font-size: 0.8em;">
+        Desarrollado por One Data Decision para Aldimark
+    </p>
+</div>
+
+</body>
+</html>

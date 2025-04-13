@@ -1,0 +1,37 @@
+Servicio,Dieta,Precio
+Desayuno,Dieta Normal,5000
+Desayuno,Dieta Blanda,5000
+Desayuno,Dieta Hiperproteica,5000
+Desayuno,Dieta Liquida Total,5000
+Desayuno,Dieta Liquida Clara,5000
+Desayuno,Dieta Hiposódica,5000
+Desayuno,Dieta Hipoglucida,5000
+Desayuno,Dieta Hipograsa,5000
+Desayuno,Dieta Renal,5000
+Refrigerio,Dieta Normal,3500
+Refrigerio,Dieta Blanda,3500
+Refrigerio,Dieta Hiperproteica,3500
+Refrigerio,Dieta Liquida Total,3500
+Refrigerio,Dieta Liquida Clara,3500
+Refrigerio,Dieta Hiposódica,3500
+Refrigerio,Dieta Hipoglucida,3500
+Refrigerio,Dieta Hipograsa,3500
+Refrigerio,Dieta Renal,3500
+Almuerzo,Dieta Normal,10000
+Almuerzo,Dieta Blanda,10000
+Almuerzo,Dieta Hiperproteica,10000
+Almuerzo,Dieta Liquida Total,10000
+Almuerzo,Dieta Liquida Clara,10000
+Almuerzo,Dieta Hiposódica,10000
+Almuerzo,Dieta Hipoglucida,10000
+Almuerzo,Dieta Hipograsa,10000
+Almuerzo,Dieta Renal,10000
+Cena,Dieta Normal,9000
+Cena,Dieta Blanda,9000
+Cena,Dieta Hiperproteica,9000
+Cena,Dieta Liquida Total,9000
+Cena,Dieta Liquida Clara,9000
+Cena,Dieta Hiposódica,9000
+Cena,Dieta Hipoglucida,9000
+Cena,Dieta Hipograsa,9000
+Cena,Dieta Renal,9000

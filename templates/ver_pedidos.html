@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ordéna - Ver Pedidos</title>
+</head>
+<body>
+    <h1>Pedidos Registrados</h1>
+    <table border="1">
+        <tr>
+            {% for key in pedidos[0].keys() %}
+            <th>{{ key }}</th>
+            {% endfor %}
+            <th>Acción</th>
+        </tr>
+        {% for pedido in pedidos %}
+        <tr>
+            {% for value in pedido.values() %}
+            <td>{{ value }}</td>
+            {% endfor %}
+            <td><a href="/editar/{{ pedido['ID Pedido'] }}">Editar</a></td>
+        </tr>
+        {% endfor %}
+        
+    </table>
+    <br><a href="/">Registrar nuevo pedido</a>
+</body>
+</html>

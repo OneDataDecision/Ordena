@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ordéna - Registrar Pedido</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<footer class="text-center text-muted mt-5 mb-3" style="font-size: 0.9em;">
+    Desarrollado por One Data Decision para Aldimark
+</footer>
+<body class="bg-light">
+    <div class="text-center my-4">
+        <img src="{{ url_for('static', filename='img/logo_ordena.png') }}" alt="Logo Ordéna" style="max-height: 200px;">
+    </div>
+    
+
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Registrar nuevo pedido</h3>
+        </div>
+        <div class="card-body">
+            <form action="/cargar_manual" method="post" class="row g-3">
+
+                <div class="col-md-6">
+                    <label class="form-label">Fecha Solicitud</label>
+                    <input type="date" name="fecha_solicitud" class="form-control" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Fecha Entrega</label>
+                    <input type="date" name="fecha_entrega" class="form-control" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Hora Entrega</label>
+                    <input type="time" name="hora_entrega" class="form-control">
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Hora Recogida</label>
+                    <input type="time" name="hora_recogida" class="form-control">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Cama</label>
+                    <input type="text" name="cama" class="form-control">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Servicio</label>
+                    <select name="servicio" class="form-select">
+                        {% for s in servicios %}
+                        <option value="{{ s }}">{{ s }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Cantidad</label>
+                    <input type="number" name="cantidad" value="1" min="1" class="form-control">
+                </div>
+
+                <div class="col-md-12">
+                    <label class="form-label">Dietas (Ctrl+clic para seleccionar varias)</label>
+                    <select name="dieta" id="dietas" multiple class="form-select">
+                        {% for d in dietas %}
+                        <option value="{{ d }}">{{ d }}</option>
+                        {% endfor %}
+                        <option value="Otra">Otra (especifique)</option>
+                    </select>
+                </div>
+                
+                <div class="col-md-12" id="otra_dieta_div" style="display:none;">
+                    <label class="form-label">Especifique la(s) otra(s) dieta(s):</label>
+                    <input type="text" name="otra_dieta" class="form-control" placeholder="Ej: Sin lactosa, alta en fibra...">
+                </div>
+                
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const selectDietas = document.getElementById('dietas');
+                        const otraDiv = document.getElementById('otra_dieta_div');
+                
+                        selectDietas.addEventListener('change', function () {
+                            const values = Array.from(selectDietas.selectedOptions).map(opt => opt.value);
+                            otraDiv.style.display = values.includes("Otra") ? "block" : "none";
+                        });
+                    });
+                </script>
+                
+                <div class="col-md-4">
+                    <label class="form-label">Estado Entrega</label><br>
+                    <input type="checkbox" name="estado_entrega" class="form-check-input me-2"> Entregado
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Estado Recogida</label><br>
+                    <input type="checkbox" name="estado_recogida" class="form-check-input me-2"> Recogido
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Condición Menaje</label>
+                    <select name="condicion_menaje" class="form-select">
+                        <option value="Bueno">Bueno</option>
+                        <option value="Regular">Regular</option>
+                        <option value="Dañado">Dañado</option>
+                        <option value="Faltante">Faltante</option>
+                    </select>
+                </div>
+
+                <div class="col-md-12">
+                    <label class="form-label">Observaciones Menaje</label>
+                    <textarea name="observaciones_menaje" class="form-control" rows="2"></textarea>
+                </div>
+
+                <div class="col-md-6">
+                    <input type="checkbox" name="firmado" class="form-check-input me-2">
+                    <label class="form-check-label">Firmado por Enfermería</label>
+                </div>
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-success">Registrar Pedido</button>
+                    <a href="/ver_pedidos" class="btn btn-secondary ms-2">Ver Pedidos</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

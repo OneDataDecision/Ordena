@@ -1,0 +1,10 @@
+ID Pedido,Fecha Solicitud,Fecha Entrega,Hora Entrega Real,Hora Recogida Menaje,Cama,Servicio,Dietas,Cantidad,Precio Unitario Total,Valor Total,Estado Entrega,Estado Recogida,Tiempo Servicio (min),Condición Menaje,Observaciones Menaje,Firmado por Enfermería
+976d6634,2025-04-13,2025-04-13,09:30,09:31,105,Desayuno,"Dieta Normal, Dieta Hiperproteica, Dieta Liquida Clara",1,15000,15000,Pendiente,Pendiente,1.0,Bueno,Funciona,Sí
+54635298,2025-04-12,2025-04-12,08:50,,25,Refrigerio,"Dieta Hiperproteica, Dieta Liquida Clara, Dieta Hipograsa",1,10500,10500,Entregado,Pendiente,,Bueno,,No
+14212bed,2025-04-06,2025-04-06,07:51,10:26,25,Desayuno,Dieta Normal,1,5000,5000,Entregado,Recogido,,Bueno,faltan 2 tenedores,Sí
+7dfbf0fb,2025-04-06,2025-04-07,07:56,,10,Cena,"Dieta Hipoglucida, Dieta Renal",2,18000,36000,Entregado,Pendiente,,Bueno,,Sí
+e1ccf010,2025-04-13,2025-04-13,09:35,,12,Refrigerio,"Dieta Normal, Dieta Hiperproteica, Dieta Liquida Clara",3,10500,31500,Entregado,Pendiente,,Bueno,,No
+0584308a,2025-04-06,2025-04-14,09:30,,25,Almuerzo,"Dieta Normal, Dieta Hiperproteica",3,20000,60000,Entregado,Pendiente,,Bueno,,No
+f2def205,2025-04-13,2025-04-14,09:44,10:44,2,Cena,Otra: deliciosa,12,0,0,Entregado,Recogido,60.0,Faltante,no hay tenedor,Sí
+fe13c992,2025-04-07,2025-04-06,09:56,11:57,2,Almuerzo,Dieta Hiperproteica,1,10000,10000,Entregado,Recogido,,Dañado,probando otro pc,Sí
+0db7b22f,2025-04-14,2025-04-14,10:37,,2 Norte,Cena,"Dieta Hiposódica, Otra: Con sal",3,9000,27000,Entregado,Pendiente,,Bueno,,No
