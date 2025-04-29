@@ -15,7 +15,37 @@
         <div class="card-body">
             <form action="/actualizar/{{ pedido['ID Pedido'] }}" method="post" class="row g-3">
 
-                <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="paciente" class="form-label">Paciente</label>
+                    <input type="text" class="form-control" id="paciente" name="paciente" value="{{ pedido['Paciente'] }}">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="pabellon" class="form-label">Pabellón</label>
+                    <input type="text" class="form-control" id="pabellon" name="pabellon" value="{{ pedido['Pabellón'] }}">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="servicio" class="form-label">Servicio</label>
+                    <input type="text" class="form-control" id="servicio" name="servicio" value="{{ pedido['Servicio'] }}">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="dietas" class="form-label">Dietas</label>
+                    <input type="text" class="form-control" id="dietas" name="dietas" value="{{ pedido['Dietas'] }}">
+                </div>
+                
+                <div class="mb-3">
+                     <label class="form-label">Observaciones</label>
+                     <input type="text" class="form-control" value="{{ pedido['Observaciones'] }}" readonly>
+                </div>
+
+                <div class="mb-3">
+                     <label for="observaciones_menaje" class="form-label">Observaciones sobre el menaje</label>
+                     <textarea class="form-control" id="observaciones_menaje" name="observaciones_menaje">{{ pedido['Observaciones Menaje'] }}</textarea>
+                </div>  
+            
+            <div class="col-md-6">
                     <label class="form-label">Hora Recogida</label>
                     <input type="time" name="hora_recogida" value="{{ pedido['Hora Recogida Menaje'] }}" class="form-control">
                 </div>
@@ -37,10 +67,7 @@
                     </select>
                 </div>
 
-                <div class="col-md-12">
-                    <label class="form-label">Observaciones sobre el menaje</label>
-                    <textarea name="observaciones_menaje" rows="3" class="form-control">{{ pedido['Observaciones Menaje'] }}</textarea>
-                </div>
+               
 
                 <div class="col-md-6">
                     <input type="checkbox" name="firmado" class="form-check-input me-2" {% if pedido['Firmado por Enfermería'] == 'Sí' %}checked{% endif %}>
@@ -56,6 +83,7 @@
         </div>
     </div>
 </div>
+{% include "footer.html" %}
 
 </body>
 </html>

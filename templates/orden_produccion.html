@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Orden de Producción</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">🧾 Orden de Producción</h2>
+
+    <form method="POST" class="row g-3 mb-4">
+        <div class="col-md-3">
+            <label class="form-label">Fecha Inicio</label>
+            <input type="date" name="fecha_ini" value="{{ fecha_ini or '' }}" class="form-control">
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Fecha Fin</label>
+            <input type="date" name="fecha_fin" value="{{ fecha_fin or '' }}" class="form-control">
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Dieta</label>
+            <select name="dieta" class="form-select">
+                <option value="Todas">Todas</option>
+                {% for d in dietas %}
+                <option value="{{ d }}" {% if dieta_actual == d %}selected{% endif %}>{{ d }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Servicio</label>
+            <select name="servicio" class="form-select">
+                <option value="Todos">Todos</option>
+                {% for s in servicios %}
+                <option value="{{ s }}" {% if servicio_actual == s %}selected{% endif %}>{{ s }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-12 text-end">
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+            <a href="/orden_produccion" class="btn btn-outline-secondary">Limpiar</a>
+            <a href="/static/orden_produccion.xlsx" download class="btn btn-success ms-2">📥 Exportar Excel</a>
+        </div>
+    </form>
+
+    <table class="table table-bordered table-sm table-striped">
+        <thead class="table-warning text-center">
+            <tr>
+                <th>Fecha</th>
+                <th>Dieta</th>
+                <th>Servicio</th>
+                <th>Cantidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fila in produccion %}
+            <tr>
+                <td>{{ fila['Fecha'] }}</td>
+                <td>{{ fila['Dieta'] }}</td>
+                <td>{{ fila['Servicio'] }}</td>
+                <td class="text-end">{{ fila['Cantidad'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="text-center mt-4">
+    <a href="/" class="btn btn-secondary">← Volver al Menú</a>
+    </div>
+</div>
+{% include "footer.html" %}
+
+</body>
+</html>

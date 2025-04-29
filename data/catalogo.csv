@@ -1,37 +1,60 @@
-Servicio,Dieta,Precio
-Desayuno,Dieta Normal,5000
-Desayuno,Dieta Blanda,5000
-Desayuno,Dieta Hiperproteica,5000
-Desayuno,Dieta Liquida Total,5000
-Desayuno,Dieta Liquida Clara,5000
-Desayuno,Dieta Hiposódica,5000
-Desayuno,Dieta Hipoglucida,5000
-Desayuno,Dieta Hipograsa,5000
-Desayuno,Dieta Renal,5000
-Refrigerio,Dieta Normal,3500
-Refrigerio,Dieta Blanda,3500
-Refrigerio,Dieta Hiperproteica,3500
-Refrigerio,Dieta Liquida Total,3500
-Refrigerio,Dieta Liquida Clara,3500
-Refrigerio,Dieta Hiposódica,3500
-Refrigerio,Dieta Hipoglucida,3500
-Refrigerio,Dieta Hipograsa,3500
-Refrigerio,Dieta Renal,3500
-Almuerzo,Dieta Normal,10000
-Almuerzo,Dieta Blanda,10000
-Almuerzo,Dieta Hiperproteica,10000
-Almuerzo,Dieta Liquida Total,10000
-Almuerzo,Dieta Liquida Clara,10000
-Almuerzo,Dieta Hiposódica,10000
-Almuerzo,Dieta Hipoglucida,10000
-Almuerzo,Dieta Hipograsa,10000
-Almuerzo,Dieta Renal,10000
-Cena,Dieta Normal,9000
-Cena,Dieta Blanda,9000
-Cena,Dieta Hiperproteica,9000
-Cena,Dieta Liquida Total,9000
-Cena,Dieta Liquida Clara,9000
-Cena,Dieta Hiposódica,9000
-Cena,Dieta Hipoglucida,9000
-Cena,Dieta Hipograsa,9000
-Cena,Dieta Renal,9000
+Servicio;Dieta;Precio
+Desayuno;Normal;7904
+Desayuno;Semiblanda;7904
+Desayuno;Liquida Total;10851
+Desayuno;Liquida Clara;10310
+Desayuno;Hiposodica;8591
+Desayuno;Hipoglucida;8682
+Desayuno;Hipograsa;8591
+Desayuno;Dieta Renal;5000
+Desayuno;Hipograsa;8591
+Desayuno;Liquida Total 140CC;10725
+Desayuno;Liquida total Miel;10851
+Desayuno;Liquida Total Miel 140CC;10851
+Desayuno;Liquida Total Nectar;10851
+Desayuno;Liquida Total Nectar 140CC;10851
+Desayuno;Pequena Semiblanda;7287
+Desayuno;Renal Dialisis;8581
+Desayuno;Renal PRE Dialisis;8581
+Desayuno;Renal SIN Dialisis;8581
+Desayuno;Semiblanda Pequena;7287
+Desayuno;Todo Pure;11608
+Desayuno;3,0 Onzas;8250
+Desayuno;3,5 Onzas;8250
+Desayuno;Alta en Fibra;10073
+Desayuno;Astringente;8591
+Desayuno;Blanda;7904
+Desayuno;Coronaria;8581
+Desayuno;Hepatica;10189
+Desayuno;Hipercalorica;9993
+Desayuno;Hiperproteica;9993
+Almuerzo;3,5 Onzas;9902
+Almuerzo;Alta en Fibra;15436
+Almuerzo;Astringente;14542
+Almuerzo;Blanda;14100
+Almuerzo;Coronaria;15213
+Almuerzo;Hepatica;18626
+Almuerzo;Hipercalorica;18626
+Almuerzo;Hipograsa;14491
+Almuerzo;Hipoglucida;14491
+Almuerzo;Hiposodica;11013
+Almuerzo;Liquida Clara;11013
+Almuerzo;Liquida Total;11883
+Almuerzo;Liquida Total 140CC;12563
+Almuerzo;Liquida Total Miel;12563
+Almuerzo;Liquida Total Miel 140CC;12563
+Almuerzo;Liquida Total Nectar;12563
+Almuerzo;Liquida Total Nectar 140CC;14100
+Almuerzo;Normal;14100
+Almuerzo;Pequena Semiblanda;15213
+Almuerzo;Renal Dialisis;14293
+Almuerzo;Renal SIN Dialisis;14100
+Almuerzo;Semiblanda;12181
+Almuerzo;Semiblanda Pequena;12181
+Almuerzo;Todo Pure;12181
+Cena;3,0 Onzas;9902
+Cena;3,5 Onzas;9902
+Cena;Astringente;14542
+Cena;Blanda;14100
+Cena;Coronaria;14293
+Cena;Hepatica;15213

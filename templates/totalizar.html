@@ -2,13 +2,13 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Reporte Diario - Ordéna</title>
+    <title>Totalización de Servicios</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
 
 <div class="container mt-5">
-    <h2 class="mb-4 text-center">Reporte Diario de Servicios</h2>
+    <h2 class="mb-4 text-center">📊 Totalización por Dieta y Servicio</h2>
 
     <form method="POST" class="row g-3 mb-4">
         <div class="col-md-3">
@@ -38,21 +38,14 @@
             </select>
         </div>
         <div class="col-12 text-end">
-            <button type="submit" name="filtrar" class="btn btn-primary">Filtrar</button>
-            <a href="/totalizar" class="btn btn-outline-warning">➕ Totalizar (ver precios)</a>
-            <a href="/reporte_diario" class="btn btn-outline-secondary">Limpiar</a>
-        </div>
-        
-    </form>
-    <form method="POST">
-        <input type="hidden" name="accion" value="totalizar">
-        <div class="text-end mb-3">
-            
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+            <a href="/totalizar" class="btn btn-outline-secondary">Limpiar</a>
+            <a href="/static/totalizacion.xlsx" download class="btn btn-success ms-2">📥 Exportar Excel</a>
         </div>
     </form>
-    
+
     <table class="table table-bordered table-striped table-sm">
-        <thead class="table-primary text-center">
+        <thead class="table-info text-center">
             <tr>
                 <th>Fecha</th>
                 <th>Servicio</th>
@@ -62,7 +55,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for fila in resumen %}
+            {% for fila in total %}
             <tr>
                 <td>{{ fila['Fecha'] }}</td>
                 <td>{{ fila['Servicio'] }}</td>
@@ -73,54 +66,12 @@
             {% endfor %}
         </tbody>
     </table>
-    
-    <{% if resumen_total %}
-    <h5 class="mt-5">Totalización por dieta y servicio</h5>
-    <table class="table table-bordered table-sm">
-        <thead class="table-secondary text-center">
-            <tr>
-                <th>Fecha</th>
-                <th>Servicio</th>
-                <th>Dieta</th>
-                <th>Cantidad</th>
-                <th>Valor Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for fila in resumen_total %}
-            <tr>
-                <td>{{ fila['Fecha'] }}</td>
-                <td>{{ fila['Servicio'] }}</td>
-                <td>{{ fila['Dieta'] }}</td>
-                <td class="text-end">{{ fila['Cantidad'] }}</td>
-                <td class="text-end">${{ "{:,.0f}".format(fila['Valor Total']) }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% endif %}
 
-       <tbody>
-            {% for fila in total_global %}
-            <tr>
-                <td>{{ fila['Servicio'] }}</td>
-                <td>{{ fila['Dieta'] }}</td>
-                <td class="text-end">{{ fila['Cantidad'] }}</td>
-                <td class="text-end">${{ "{:,.0f}".format(fila['Valor Total']) }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    
-
-    <div class="d-flex justify-content-between mt-4">
-        <a href="/" class="btn btn-secondary">← Volver</a>
-        <a href="/static/reporte_diario.xlsx" download class="btn btn-success">📥 Exportar a Excel</a>
+    <div class="text-center mt-4">
+        <a href="/" class="btn btn-secondary">← Volver al Menú</a>
     </div>
-
-    {% include "footer.html" %}
-
 </div>
+{% include "footer.html" %}
 
 </body>
 </html>
