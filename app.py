@@ -20,6 +20,10 @@ def normalizar(texto):
 app = Flask(__name__)
 app.secret_key = 'clave_secreta_segura_123'  # cámbiala en producción
 
+def cargar_catalogo():
+    catalogo_path = os.path.join(app.root_path, 'data', 'catalogo.csv')
+    return pd.read_csv(catalogo_path, sep=";", encoding="latin1")
+
 def cargar_sedes():
     df = pd.read_csv("cds.csv", encoding="latin1")
     return list(zip(df["codigo"], df["nombre"]))
@@ -77,7 +81,8 @@ def log_ruta():
 @app.route("/")
 def index():
     print("✅ Entrando a la función INDEX correctamente")
-    catalogo = pd.read_csv(CATALOGO_FILE, encoding="latin1", sep=";")
+    catalogo = cargar_catalogo()
+
     print("Columnas del catálogo:", catalogo.columns.tolist())
 
     servicios = catalogo["Servicio"].dropna().unique()
@@ -88,7 +93,8 @@ def index():
 @app.route("/cargar_manual", methods=["POST"])
 def cargar_manual():
     data = pd.read_csv(DATA_FILE,sep=";", encoding="latin1")
-    catalogo = pd.read_csv(CATALOGO_FILE, encoding="latin1" , sep=";")
+    catalogo = cargar_catalogo()
+
 
     servicio = request.form["servicio"]
     dietas_seleccionadas = request.form.getlist("dieta")
@@ -217,7 +223,8 @@ def cargar_censo():
             dieta_normalizada = normalizar(dieta_original)
 
 # Normalizar catálogo
-            catalogo = pd.read_csv(CATALOGO_FILE, sep=";", encoding="latin1")
+            catalogo = cargar_catalogo()
+
             catalogo["Dieta_Normalizada"] = catalogo["Dieta"].apply(normalizar)
 
 # Buscar la mejor coincidencia
@@ -328,7 +335,8 @@ def reporte_diario():
     df["Fecha Solicitud"] = pd.to_datetime(df["Fecha Solicitud"])
 
     # Cargar y normalizar catálogo
-    catalogo = pd.read_csv(CATALOGO_FILE, sep=";", encoding="latin1")
+    catalogo = cargar_catalogo()
+
     catalogo["Dieta_Normalizada"] = catalogo["Dieta"].apply(normalizar)
 
     # Definir función interna para corregir dietas
@@ -516,7 +524,8 @@ def rotulos():
 @app.route("/totalizar", methods=["GET", "POST"])
 def totalizar():
     df = pd.read_csv(DATA_FILE, sep=";", encoding="latin1")
-    catalogo = pd.read_csv(CATALOGO_FILE, sep=";", encoding="latin1")
+    catalogo = cargar_catalogo()
+
 
     # Normalizar catálogo
     catalogo["Dieta_Normalizada"] = catalogo["Dieta"].apply(lambda x: x.upper().replace("Á", "A").replace("É", "E").replace("Í", "I").replace("Ó", "O").replace("Ú", "U").strip())
