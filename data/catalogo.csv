@@ -8,19 +8,19 @@ Desayuno;Hipoglucida;8682
 Desayuno;Hipograsa;8591
 Desayuno;Dieta Renal;5000
 Desayuno;Hipograsa;8591
-Desayuno;Liquida Total 140CC;10725
+Desayuno;Liquida Total 140 Cc;10725
 Desayuno;Liquida total Miel;10851
-Desayuno;Liquida Total Miel 140CC;10851
+Desayuno;Liquida Total Miel 140 Cc;10851
 Desayuno;Liquida Total Nectar;10851
-Desayuno;Liquida Total Nectar 140CC;10851
+Desayuno;Liquida Total Nectar 140 Cc;10851
 Desayuno;Pequena Semiblanda;7287
 Desayuno;Renal Dialisis;8581
 Desayuno;Renal PRE Dialisis;8581
 Desayuno;Renal SIN Dialisis;8581
 Desayuno;Semiblanda Pequena;7287
 Desayuno;Todo Pure;11608
-Desayuno;3,0 Onzas;8250
-Desayuno;3,5 Onzas;8250
+Desayuno;3.0 Onzas;8250
+Desayuno;3.5 Onzas;8250
 Desayuno;Alta en Fibra;10073
 Desayuno;Astringente;8591
 Desayuno;Blanda;7904
@@ -28,26 +28,28 @@ Desayuno;Coronaria;8581
 Desayuno;Hepatica;10189
 Desayuno;Hipercalorica;9993
 Desayuno;Hiperproteica;9993
-Almuerzo;3,5 Onzas;9902
+Almuerzo;3.5 Onzas;9902
 Almuerzo;Alta en Fibra;15436
 Almuerzo;Astringente;14542
 Almuerzo;Blanda;14100
 Almuerzo;Coronaria;15213
 Almuerzo;Hepatica;18626
+Almuerzo;Hiperproteica;14542
 Almuerzo;Hipercalorica;18626
 Almuerzo;Hipograsa;14491
 Almuerzo;Hipoglucida;14491
 Almuerzo;Hiposodica;11013
 Almuerzo;Liquida Clara;11013
 Almuerzo;Liquida Total;11883
-Almuerzo;Liquida Total 140CC;12563
+Almuerzo;Liquida Total 140 Cc;12563
 Almuerzo;Liquida Total Miel;12563
-Almuerzo;Liquida Total Miel 140CC;12563
+Almuerzo;Liquida Total Miel 140 Cc;12563
 Almuerzo;Liquida Total Nectar;12563
-Almuerzo;Liquida Total Nectar 140CC;14100
+Almuerzo;Liquida Total Nectar 140 Cc;14100
 Almuerzo;Normal;14100
 Almuerzo;Pequena Semiblanda;15213
 Almuerzo;Renal Dialisis;14293
+Almuerzo;Renal PRE Dialisis;15213
 Almuerzo;Renal SIN Dialisis;14100
 Almuerzo;Semiblanda;12181
 Almuerzo;Semiblanda Pequena;12181
@@ -58,3 +60,93 @@ Cena;Astringente;14542
 Cena;Blanda;14100
 Cena;Coronaria;14293
 Cena;Hepatica;15213
+Cena;Hipercalorica;18626
+Cena;Hiperproteica;18626
+Cena;Hipograsa;14542
+Cena;Hipoglucida;14491
+Cena;Hiposodica;14542
+Cena;Liquida Clara;11013
+Cena;Liquida Total;11883
+Cena;Liquida Total 140CC;11883
+Cena;Liquida Total Miel;12563
+Cena;Liquida Total Miel 140CC;12563
+Cena;Liquida Total Miel 3,5 Onzas;9902
+Cena;Liquida Total Nectar;12563
+Cena;Liquida Total Necatr 140CC;12563
+Cena;Normal;14100
+Cena;Pequena Semiblanda;12181
+Cena;Renal Dialisis;14293
+Cena;Renal PRE Dialisis;14293
+Cena;Renal SIN Dialisis;15213
+Cena;Semiblanda;14100
+Cena;Semiblanda Pequena;12181
+Cena;Todo Pure;14896
+Nueves;3,0 Onzas;4319
+Nueves;3.5 Onzas;4319
+Nueves;Alta En Fibra;2891
+Nueves;Astringente;4319
+Nueves;Blanda;4319
+Nueves;Coronaria;4319
+Nueves;Hipercalorica;4319
+Nueves;Hiperproteica;4319
+Nueves;Hipo Grasa;4319
+Nueves;Hipoglucida;4319
+Nueves;Hipograsa;4319
+Nueves;Hiposodica;4319
+Nueves;Liquida Clara;3880
+Nueves;Liquida Total;3196
+Nueves;Liquida Total 140 Cc;3196
+Nueves;Liquida Total Miel;4913
+Nueves;Liquida Total Miel 140 Cc;4913
+Nueves;Liquida Total Nectar;4913
+Nueves;Liquida Total Nectar 140 Cc;4913
+Nueves;Nada Via Oral;0
+Nueves;Normal;4175
+Nueves;Pequeña Semiblanda;2458
+Nueves;Renal Dialisis;4175
+Nueves;Renal PRE Dialisis;4175
+Nueves;Renal SIN Dialisis;4175
+Nueves;Semiblanda;4319
+Nueves;Semiblanda Pequeña;2458
+Nueves;Todo Pure;
+Onces;3,0 Onzas;2104
+Onces;Alta En Fibra;2891
+Onces;Blanda;4319
+Onces;Coronaria;4319
+Onces;Hipercalorica;4976
+Onces;Hiperproteica;4976
+Onces;Hipograsa;4319
+Onces;Hipoglucida;4319
+Onces;Hiposodica;4319
+Onces;Liquida Clara;3880
+Onces;Liquida Total;3196
+Onces;Liquida Total 140 Cc;3196
+Onces;Liquida Total Miel;4913
+Onces;Liquida Total Miel 140 Cc;4913
+Onces;Liquida Total Nectar;4913
+Onces;Liquida Total Nectar 140 Cc;4913
+Onces;Normal;4319
+Onces;Pequeña Semiblanda;4319
+Onces;Renal Dialisis;4175
+Onces;Renal PRE Dialisis;4175
+Onces;Renal SIN Dialisis;4175
+Onces;Semiblanda;4319
+Onces;Semiblanda Pequeña;2458
+Onces;Todo Pure;4319
+Refrigerio Nocturno;3.5 Onzas;2458
+Refrigerio Nocturno;Blanda;5830
+Refrigerio Nocturno;Coronaria;5830
+Refrigerio Nocturno;Hipercalorica;4979
+Refrigerio Nocturno;Hiperproteica;4979
+Refrigerio Nocturno;Hipoglucida;5830
+Refrigerio Nocturno;Hipograsa;5830
+Refrigerio Nocturno;Hiposodica;5830
+Refrigerio Nocturno;Liquida Total;5830
+Refrigerio Nocturno;Liquida Total Nectar;5830
+Refrigerio Nocturno;Normal;5830
+Refrigerio Nocturno;Pequeña Semiblanda;2458
+Refrigerio Nocturno;Renal Dialisis;4175
+Refrigerio Nocturno;Renal PRE Diálisis;4175
+Refrigerio Nocturno;Renal SIN Diálisis;4175
+Refrigerio Nocturno;Semiblanda;4175
+Refrigerio Nocturno;Todo Pure;4175

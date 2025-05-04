@@ -230,7 +230,7 @@ def cargar_censo():
 
             observaciones = str(fila["OBSERVACIONES"]).strip() if not pd.isna(fila["OBSERVACIONES"]) else ""
             id_paciente = str(fila["ID"]).strip()
-            print(f"ID Paciente leído: {id_paciente}")  # <- Agrega esto
+           
 
             nuevo = {
                 "ID Pedido": str(uuid.uuid4())[:8],
@@ -293,7 +293,7 @@ def actualizar(id):
     print("Columnas del DataFrame después de lectura:", df.columns.tolist())
 
     index = df[df["ID Pedido"] == id].index[0]
-
+    df.at[index, "Hora Entrega Real"] = request.form["hora_entrega"]
     df.at[index, "Hora Recogida Menaje"] = request.form["hora_recogida"]
     df.at[index, "Estado Recogida"] = request.form["estado_recogida"]
     df.at[index, "Condición Menaje"] = request.form["condicion_menaje"]
@@ -303,7 +303,7 @@ def actualizar(id):
     df.at[index, "Pabellón"] = request.form["pabellon"]
     df.at[index, "Servicio"] = request.form["servicio"]
     df.at[index, "Dietas"] = request.form["dietas"]
-
+    
     df.to_csv(DATA_FILE, index=False, sep=";", encoding="latin1")
     return redirect("/ver_pedidos")
 
@@ -592,15 +592,21 @@ def totalizar():
 
     resumen.to_excel("static/totalizacion.xlsx", index=False)
 
+    # Crear tabla de total de ventas por día
+    total_diario = resumen.groupby("Fecha")["Valor Total"].sum().reset_index()
+    total_diario.columns = ["Fecha", "Total Venta Día"]
     servicios = sorted(df["Servicio"].dropna().unique())
     dietas = sorted(set([d.strip() for lista in df["Dietas"].dropna() for d in str(lista).split(",")]))
 
     return render_template("totalizar.html",
                            total=resumen.to_dict(orient="records"),
+                           total_diario=total_diario.to_dict(orient="records"),
                            servicios=servicios, dietas=dietas,
                            fecha_ini=fecha_ini, fecha_fin=fecha_fin,
                            servicio_actual=servicio_filtro,
                            dieta_actual=dieta_filtro)
+    
+    
 
 if __name__ == "__main__":
     app.run(debug=False, host='0.0.0.0')

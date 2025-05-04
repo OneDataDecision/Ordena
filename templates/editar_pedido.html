@@ -44,7 +44,11 @@
                      <label for="observaciones_menaje" class="form-label">Observaciones sobre el menaje</label>
                      <textarea class="form-control" id="observaciones_menaje" name="observaciones_menaje">{{ pedido['Observaciones Menaje'] }}</textarea>
                 </div>  
-            
+            <div class="col-md-6">
+                    <label class="form-label">Hora Entrega</label>
+                    <input type="time" name="hora_entrega" value="{{ pedido['Hora Entrega Real'] }}" class="form-control">
+                </div>
+                
             <div class="col-md-6">
                     <label class="form-label">Hora Recogida</label>
                     <input type="time" name="hora_recogida" value="{{ pedido['Hora Recogida Menaje'] }}" class="form-control">
