@@ -1,2 +1,2 @@
-ID Pedido;Fecha Solicitud;Fecha Entrega;Hora Entrega Real;Hora Recogida Menaje;Cama;Servicio;Dietas;Cantidad;Precio Unitario Total;Valor Total;Estado Entrega;Estado Recogida;Tiempo Servicio (min);Condiciï¿½n Menaje;Observaciones;Observaciones Menaje;Firmado por Enfermerï¿½a;Paciente;ID Paciente;Pabellï¿½n;CDS
-21022db3;2025-05-05;2025-05-05;14:30;14:30;152;Desayuno;Normal, Semiblanda, Liquida Total;1;26659.0;26659.0;Entregado;Pendiente;0;;;;;;;;
+ID Pedido;Fecha Solicitud;Fecha Entrega;Hora Entrega Real;Hora Recogida Menaje;Cama;Servicio;Dietas;Cantidad;Precio Unitario Total;Valor Total;Estado Entrega;Estado Recogida;Tiempo Servicio (min);Condiciï¿½n Menaje;Observaciones;Observaciones Menaje;Firmado por Enfermerï¿½a;Paciente;ID Paciente;Pabellï¿½n;CDS;Condición Menaje;Firmado por Enfermería;Pabellón
+21022db3;2025-05-05;2025-05-05;14:30;14:30;152;Desayuno;Normal, Semiblanda, Liquida Total;1;26659.0;26659.0;Entregado;Recogido;0;;;funcionando!;;nan;;;;Bueno;Sí;
