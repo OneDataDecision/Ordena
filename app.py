@@ -221,6 +221,10 @@ def cargar_censo():
     from time import time  # Solo si no está ya importado
 
     inicio = time()
+    # 🛡️ Preparamos el catálogo una sola vez ANTES de iniciar el recorrido
+    catalogo = cargar_catalogo()
+    catalogo["Dieta_Normalizada"] = catalogo["Dieta"].apply(normalizar)
+
     for index, fila in df.iterrows():
         try:
             aislado = str(fila["AISLADO"]).strip().lower()
