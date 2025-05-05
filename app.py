@@ -10,12 +10,20 @@ import os
 from werkzeug.utils import secure_filename
 from datetime import datetime
 
+
+
 def normalizar(texto):
     if not isinstance(texto, str):
         return ""
-    texto = texto.strip().upper()
+    texto = texto.strip()
     texto = unicodedata.normalize('NFD', texto).encode('ascii', 'ignore').decode('utf-8')
+    texto = texto.lower()
+    texto = texto.replace('-', ' ')
+    texto = texto.replace('_', ' ')
+    texto = texto.replace('/', ' ')
+    texto = texto.replace('.', '')
     return texto
+
 
 app = Flask(__name__)
 app.secret_key = 'clave_secreta_segura_123'  # cámbiala en producción
