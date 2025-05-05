@@ -236,43 +236,45 @@ def cargar_censo():
             catalogo["Dieta_Normalizada"] = catalogo["Dieta"].apply(normalizar)
 
 # Buscar la mejor coincidencia
-            coincidencia = catalogo[catalogo["Dieta_Normalizada"] == dieta_normalizada]
+if "Dieta_Normalizada" in catalogo.columns and dieta_normalizada:
+    coincidencia = catalogo[catalogo["Dieta_Normalizada"] == dieta_normalizada]
+else:
+    coincidencia = pd.DataFrame()
 
-            if not coincidencia.empty:
-               dieta_final = coincidencia.iloc[0]["Dieta"]  # Usamos el nombre bonito del catálogo
-            else:
-               dieta_final = dieta_original  # Si no hay coincidencia, dejamos como viene
+if not coincidencia.empty:
+    dieta_final = coincidencia.iloc[0]["Dieta"]  # Usamos el nombre bonito del catálogo
+else:
+    dieta_final = dieta_original  # Si no hay coincidencia, dejamos como viene
 
-            observaciones = str(fila["OBSERVACIONES"]).strip() if not pd.isna(fila["OBSERVACIONES"]) else ""
-            id_paciente = str(fila["ID"]).strip()
-           
+observaciones = str(fila["OBSERVACIONES"]).strip() if not pd.isna(fila["OBSERVACIONES"]) else ""
+id_paciente = str(fila["ID"]).strip()
 
-            nuevo = {
-                "ID Pedido": str(uuid.uuid4())[:8],
-                "Fecha Solicitud": hoy,
-                "Fecha Entrega": hoy,
-                "Hora Entrega Real": "",
-                "Hora Recogida Menaje": "",
-                "Cama": cama,
-                "Servicio": servicio_detectado,
-                "Dietas": dieta_final,
-                "Cantidad": 1,
-                "Precio Unitario Total": "",
-                "Valor Total": "",
-                "Estado Entrega": "Pendiente",
-                "Estado Recogida": "Pendiente",
-                "Tiempo Servicio (min)": "",
-                "Condición Menaje": "Desechable" if aislado == "sí" else "Normal",
-                "Observaciones": observaciones,
-                "Observaciones Menaje": "",
-                "Firmado por Enfermería": "No",
-                "Paciente": paciente,
-                "ID Paciente": id_paciente,  # 👈 Aquí agregas la línea
-                "Pabellón": pabellon,
-                "CDS": cds
-            }
+nuevo = {
+    "ID Pedido": str(uuid.uuid4())[:8],
+    "Fecha Solicitud": hoy,
+    "Fecha Entrega": hoy,
+    "Hora Entrega Real": "",
+    "Hora Recogida Menaje": "",
+    "Cama": cama,
+    "Servicio": servicio_detectado,
+    "Dietas": dieta_final,
+    "Cantidad": 1,
+    "Precio Unitario Total": "",
+    "Valor Total": "",
+    "Estado Entrega": "Pendiente",
+    "Estado Recogida": "Pendiente",
+    "Tiempo Servicio (min)": "",
+    "Condición Menaje": "Desechable" if aislado == "sí" else "Normal",
+    "Observaciones": observaciones,
+    "Observaciones Menaje": "",
+    "Firmado por Enfermería": "No",
+    "Paciente": paciente,
+    "ID Paciente": id_paciente,  # 👈 Aquí agregas la línea
+    "Pabellón": pabellon,
+    "CDS": cds
+}
 
-            nuevos_pedidos.append(nuevo)
+nuevos_pedidos.append(nuevo)
 
 
         except Exception as e:
