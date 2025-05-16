@@ -14,6 +14,7 @@ pedidos_bp = Blueprint("pedidos", __name__)
 @pedidos_bp.route("/")
 def inicio():
     return render_template("inicio.html")
+
 @pedidos_bp.route("/ver_pedidos")
 def ver_pedidos():
     ruta_archivo = os.path.join("data", "pedidos.csv")
@@ -25,6 +26,9 @@ def ver_pedidos():
         pedidos = []
 
     return render_template("ver_pedidos.html", pedidos=pedidos)
+@pedidos_bp.route("/catalogo")
+def catalogo():
+    return render_template("catalogo.html")
 
 
 
@@ -239,6 +243,7 @@ def editar(id):
 
     pedido = filtro.iloc[0].to_dict()
     return render_template("editar_pedido.html", pedido=pedido)
+
 @pedidos_bp.route("/actualizar/<id>", methods=["POST"])
 def actualizar(id):
     DATA_FILE = os.path.join("data", "pedidos.csv")
@@ -259,6 +264,7 @@ def actualizar(id):
 
     df.to_csv(DATA_FILE, index=False, sep=";", encoding="latin1")
     return redirect("/ver_pedidos")
+
 @pedidos_bp.route("/rotulos", methods=["GET", "POST"])
 def rotulos():
     DATA_FILE = os.path.join("data", "pedidos.csv")

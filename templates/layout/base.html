@@ -64,22 +64,24 @@
 
         <details open>
             <summary>Pedidos</summary>
-            <a href="/ver_pedidos">Ver Pedidos</a>
-            <a href="/cargar_manual">Cargar Manual</a>
-            <a href="/cargar_censo">Cargar Censo</a>
+            <a href="{{ url_for('pedidos.ver_pedidos') }}">Ver Pedidos</a>
+            <a href="{{ url_for('pedidos.cargar_manual') }}">Cargar Manual</a>
+            <a href="{{ url_for('pedidos.cargar_censo') }}">Cargar Censo</a>
         </details>
 
         <details>
             <summary>Reportes</summary>
-            <a href="/reporte_diario">Diario</a>
-            <a href="/orden_produccion">Producción</a>
-            <a href="/totalizar">Totalización</a>
+            <a href="{{ url_for('rotulos.rotulos') }}">Rótulos</a>
+            <a href="{{ url_for('reportes.reporte_diario') }}">Diario</a>
+            <a href="{{ url_for('reportes.orden_produccion') }}">Producción</a>
+            <a href="{{ url_for('reportes.totalizar') }}">Totalización</a>
         </details>
 
         <details>
             <summary>Administración</summary>
-            <a href="/catalogo">Catálogo Dietas</a>
-            <a href="/usuarios">Usuarios</a>
+            <a href="{{ url_for('catalogo.catalogo') }}">Catálogo Dietas</a>
+            <a href="{{ url_for('usuarios.usuarios') }}">Usuarios</a>
+
         </details>
 
         <details>

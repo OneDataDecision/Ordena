@@ -1,4 +1,4 @@
-# from flask import Flask, render_template, request, redirect, session, url_for
+from flask import Flask, render_template, request, redirect, session, url_for
 from flask import Flask
 from routes import register_routes  # ✅ Importamos DESPUÉS de Flask
 
@@ -6,9 +6,7 @@ app = Flask(__name__)               # ✅ Primero definimos app
 app.secret_key = "ordena_secret"   # ✅ Luego configuramos
 
 register_routes(app)               # ✅ Luego registramos las rutas
-@app.route("/")
-def inicio():
-    return render_template("inicio.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
@@ -86,16 +84,24 @@ if __name__ == "__main__":
 # def logout():
 #     session.clear()
 #     return redirect(url_for("login"))
+#@app.before_request
+#def proteger_rutas():
+    #rutas_libres = ["/login", "/static", "/favicon.ico"]
+    #if request.path in rutas_libres or request.path.startswith("/static"):
+        #return  # permitir acceso libre
 
-# #@app.before_request
-# def proteger_rutas():
-#     rutas_libres = ["/login", "/static", "/favicon.ico"]
-#     if request.path in rutas_libres or request.path.startswith("/static"):
-#         return  # permitir acceso libre
+    #if not session.get("usuario"):
+        #if request.endpoint != "login" or request.method != "GET":
+            #return redirect(url_for("login"))
+   # @app.before_request
+    #def proteger_rutas():
+     #   rutas_libres = ["/login", "/static", "/favicon.ico"]
+      #  if request.path in rutas_libres or request.path.startswith("/static"):
+       #      return  # permitir acceso libre
 
-#     if not session.get("usuario"):
-#         if request.endpoint != "login" or request.method != "GET":
-#             return redirect(url_for("login"))
+        #if not session.get("usuario"):
+         #    if request.endpoint != "login" or request.method != "GET":
+          #       return redirect(url_for("login"))
 
 # #@app.before_request
 # def log_ruta():
