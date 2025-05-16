@@ -1,0 +1,19 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Inicio - Ordéna{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center flex-column" style="background-color: #f0f4f8; border-radius: 10px; height: 100vh; text-align: center;">
+
+    <img src="{{ url_for('static', filename='img/logo_ordena.png') }}" alt="Logo Ordéna" style="max-height: 250px; margin-bottom: 30px;">
+    <h1 class="mb-4 text-center">Bienvenido a Ordéna</h1>
+    <p class="lead text-center">Plataforma para la gestión de pedidos hospitalarios.</p>
+    <hr style="width: 50%; margin: 40px auto;">
+    <div class="mt-5 text-center">
+        <img src="{{ url_for('static', filename='img/LogoONEOficial.png') }}" alt="Logo ONE" style="max-height: 50px;">
+        <p class="mt-3 text-muted" style="font-size: 0.9rem;">
+            Ordéna&reg; es una plataforma desarrollada por <strong>ONE</strong>. Todos los derechos reservados. Prohibida su reproducción total o parcial sin autorización.
+        </p>
+    </div>
+</div>
+{% endblock %}

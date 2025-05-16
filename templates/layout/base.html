@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Ordéna{% endblock %}</title>
+
+    <!-- ✅ Bootstrap para estilos -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- ✅ Tu hoja de estilos -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
+
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .sidebar {
+            width: 220px;
+            background-color: #1d3557;
+            color: white;
+            height: 100vh;
+            position: fixed;
+            padding: 20px 10px;
+            overflow-y: auto;
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .sidebar details {
+            margin-bottom: 15px;
+        }
+        .sidebar summary {
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            color: #a8dadc;
+            padding: 5px 10px;
+        }
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 6px 20px;
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+        .sidebar a:hover {
+            background-color: #457b9d;
+        }
+        .content {
+            margin-left: 220px;
+            padding: 20px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>Ordéna</h2>
+
+        <details open>
+            <summary>Pedidos</summary>
+            <a href="/ver_pedidos">Ver Pedidos</a>
+            <a href="/cargar_manual">Cargar Manual</a>
+            <a href="/cargar_censo">Cargar Censo</a>
+        </details>
+
+        <details>
+            <summary>Reportes</summary>
+            <a href="/reporte_diario">Diario</a>
+            <a href="/orden_produccion">Producción</a>
+            <a href="/totalizar">Totalización</a>
+        </details>
+
+        <details>
+            <summary>Administración</summary>
+            <a href="/catalogo">Catálogo Dietas</a>
+            <a href="/usuarios">Usuarios</a>
+        </details>
+
+        <details>
+            <summary>Sesión</summary>
+            <a href="/logout">Cerrar Sesión</a>
+        </details>
+    </div>
+
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</body>
+</html>

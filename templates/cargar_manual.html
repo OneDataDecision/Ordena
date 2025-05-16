@@ -1,0 +1,91 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Registrar Pedido Manual - Ordéna{% endblock %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <h2 class="text-center mb-4">Registro Manual de Pedido</h2>
+    <form action="/cargar_manual" method="post" class="row g-3 border rounded p-4 shadow bg-white">
+
+        <div class="col-md-3">
+            <label class="form-label">Fecha Solicitud</label>
+            <input type="date" name="fecha_solicitud" class="form-control" required>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Fecha Entrega</label>
+            <input type="date" name="fecha_entrega" class="form-control" required>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Hora Entrega</label>
+            <input type="time" name="hora_entrega" class="form-control">
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Hora Recogida</label>
+            <input type="time" name="hora_recogida" class="form-control">
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Cama</label>
+            <input type="text" name="cama" class="form-control">
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Servicio</label>
+            <select name="servicio" class="form-select" required>
+                <option value="Desayuno">Desayuno</option>
+                <option value="Almuerzo">Almuerzo</option>
+                <option value="Cena">Cena</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Dieta(s)</label>
+            <select name="dieta" class="form-select" multiple required>
+                <option value="Blanda">Blanda</option>
+                <option value="Hiposódica">Hiposódica</option>
+                <option value="Renal">Renal</option>
+                <option value="Otra">Otra</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Otra dieta</label>
+            <input type="text" name="otra_dieta" class="form-control">
+        </div>
+
+        <div class="col-md-2">
+            <label class="form-label">Cantidad</label>
+            <input type="number" name="cantidad" class="form-control" min="1" required>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Condición Menaje</label>
+            <select name="condicion_menaje" class="form-select">
+                <option value="Normal">Normal</option>
+                <option value="Desechable">Desechable</option>
+            </select>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Observaciones Menaje</label>
+            <input type="text" name="observaciones_menaje" class="form-control">
+        </div>
+
+        <div class="col-md-3 form-check mt-4">
+            <input class="form-check-input" type="checkbox" name="estado_entrega" id="estado_entrega">
+            <label class="form-check-label" for="estado_entrega">Entregado</label>
+        </div>
+
+        <div class="col-md-3 form-check mt-4">
+            <input class="form-check-input" type="checkbox" name="estado_recogida" id="estado_recogida">
+            <label class="form-check-label" for="estado_recogida">Recogido</label>
+        </div>
+
+        <div class="col-md-3 form-check mt-4">
+            <input class="form-check-input" type="checkbox" name="firmado" id="firmado">
+            <label class="form-check-label" for="firmado">Firmado por Enfermería</label>
+        </div>
+
+        <div class="col-12 text-center mt-4">
+            <button type="submit" class="btn btn-primary btn-lg">Registrar Pedido</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
