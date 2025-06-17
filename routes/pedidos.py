@@ -21,11 +21,15 @@ def ver_pedidos():
 
     try:
         df = pd.read_csv(ruta_archivo, sep=";", encoding="latin1")
+        cds_actual = session.get("cds", "")
+        if cds_actual:
+            df = df[df["CDS"] == cds_actual]
         pedidos = df.to_dict(orient="records")
     except FileNotFoundError:
         pedidos = []
 
     return render_template("ver_pedidos.html", pedidos=pedidos)
+
 @pedidos_bp.route("/catalogo")
 def catalogo():
     return render_template("catalogo.html")
@@ -36,7 +40,10 @@ def catalogo():
 # Ruta: /cargar_manual
 @pedidos_bp.route("/cargar_manual", methods=["GET"])
 def mostrar_formulario_manual():
-    return render_template("cargar_manual.html")
+    catalogo = cargar_catalogo()
+    dietas = sorted(catalogo["Dieta"].dropna().unique())
+    return render_template("cargar_manual.html", dietas=dietas)
+    
 @pedidos_bp.route("/cargar_manual", methods=["POST"])
 def cargar_manual():
     DATA_FILE = os.path.join("data", "pedidos.csv")
@@ -73,6 +80,7 @@ def cargar_manual():
         "Servicio": servicio,
         "Dietas": dietas_txt,
         "Cantidad": cantidad,
+        "CDS": session.get("cds", "desconocido"),
         "Precio Unitario Total": precio_total,
         "Valor Total": valor_total,
         "Estado Entrega": "Entregado" if request.form.get("estado_entrega") else "Pendiente",
@@ -125,6 +133,10 @@ def cargar_censo():
 
     if extension in ["xls", "xlsx"]:
         df = pd.read_excel(archivo, engine="openpyxl")
+        # ✅ Añadir columna del CDS activo
+        cds_actual = session.get("cds", "")
+        df["CDS"] = cds_actual
+
     else:
         return "Tipo de archivo no soportado. Usa un archivo Excel (.xlsx o .xls)", 400
 
@@ -195,6 +207,7 @@ def cargar_censo():
                 "Servicio": servicio_detectado,
                 "Dietas": dieta_final,
                 "Cantidad": 1,
+                "CDS": session.get("cds", "desconocido"),
                 "Precio Unitario Total": "",
                 "Valor Total": "",
                 "Estado Entrega": "Pendiente",
@@ -236,13 +249,48 @@ def editar(id):
     DATA_FILE = os.path.join("data", "pedidos.csv")
     print("ID recibido:", id)
 
+    cds_actual = session.get("cds", "")
     df = pd.read_csv(DATA_FILE, sep=";", encoding="latin1")
-    filtro = df[df["ID Pedido"] == id]
+    
+     # ✅ Filtro por ID y CDS al mismo tiempo
+    filtro = df[(df["ID Pedido"] == id) & (df["CDS"] == cds_actual)]
     if filtro.empty:
-        return f"Pedido con ID {id} no encontrado", 404
+        return f"Pedido con ID {id} no encontrado o no autorizado", 404
 
     pedido = filtro.iloc[0].to_dict()
     return render_template("editar_pedido.html", pedido=pedido)
+
+@pedidos_bp.route("/guardar_edicion/<id>", methods=["POST"])
+def guardar_edicion(id):
+    DATA_FILE = os.path.join("data", "pedidos.csv")
+    cds_actual = session.get("cds", "")
+    
+    df = pd.read_csv(DATA_FILE, sep=";", encoding="latin1")
+
+    # Filtra sólo el pedido del CDS actual
+    index = df[(df["ID Pedido"] == id) & (df["CDS"] == cds_actual)].index
+    if index.empty:
+        return f"No autorizado o pedido con ID {id} no encontrado", 404
+
+    idx = index[0]
+# Validamos que el pedido pertenezca al CDS del usuario
+    if str(df.at[idx, "CDS"]).strip() != cds_actual:
+        return "No autorizado para editar este pedido", 403
+
+    # Actualiza los campos editables
+    df.at[idx, "Hora Entrega Real"] = request.form.get("hora_entrega", "")
+    df.at[idx, "Hora Recogida Menaje"] = request.form.get("hora_recogida", "")
+    df.at[idx, "Estado Entrega"] = request.form.get("estado_entrega", "")
+    df.at[idx, "Estado Recogida"] = request.form.get("estado_recogida", "")
+    df.at[idx, "Condición Menaje"] = request.form.get("condicion_menaje", "")
+    df.at[idx, "Observaciones Menaje"] = request.form.get("observaciones", "")
+    firmado = request.form.get("firmado")
+    df.at[idx, "Firmado por Enfermería"] = "Sí" if firmado else "No"
+    
+    # Guardamos el archivo actualizado
+
+    df.to_csv(DATA_FILE, sep=";", encoding="latin1", index=False)
+    return redirect("/ver_pedidos")
 
 @pedidos_bp.route("/actualizar/<id>", methods=["POST"])
 def actualizar(id):
@@ -265,8 +313,8 @@ def actualizar(id):
     df.to_csv(DATA_FILE, index=False, sep=";", encoding="latin1")
     return redirect("/ver_pedidos")
 
-@pedidos_bp.route("/rotulos", methods=["GET", "POST"])
-def rotulos():
+@pedidos_bp.route("/rotulos_backup", methods=["GET", "POST"])
+def rotulos_backup():
     DATA_FILE = os.path.join("data", "pedidos.csv")
     df = pd.read_csv(DATA_FILE, sep=";", encoding="latin1")
     df["Fecha Solicitud"] = pd.to_datetime(df["Fecha Solicitud"]).dt.date

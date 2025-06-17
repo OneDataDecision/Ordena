@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request,  redirect, url_for, session
 import pandas as pd
 import os
 from datetime import datetime
@@ -145,10 +145,15 @@ def orden_produccion():
                            fecha_fin=fecha_fin,
                            servicio_actual=servicio_filtro,
                            dieta_actual=dieta_filtro)
+
 @reportes_bp.route("/totalizar", methods=["GET", "POST"])
 def totalizar():
     DATA_FILE = os.path.join("data", "pedidos.csv")
     df = pd.read_csv(DATA_FILE, sep=";", encoding="latin1")
+    cds_actual = session.get("cds", "")
+    if cds_actual:
+        df = df[df["CDS"] == cds_actual]
+
     catalogo = cargar_catalogo()
     catalogo["Dieta_Normalizada"] = catalogo["Dieta"].apply(lambda x: x.upper().replace("Á", "A").replace("É", "E").replace("Í", "I").replace("Ó", "O").replace("Ú", "U").strip())
 
@@ -212,10 +217,18 @@ def totalizar():
     if dieta_filtro != "Todas":
         detalle = detalle[detalle["Dieta"].str.contains(dieta_filtro)]
 
-    resumen = detalle.groupby(["Fecha", "Servicio", "Dieta"]).agg({
-        "Cantidad": "sum",
-        "Valor Total": "sum"
+    if detalle.empty:
+        resumen = pd.DataFrame(columns=["Fecha", "Servicio", "Dieta", "Cantidad", "Valor Total"])
+        total_diario = pd.DataFrame(columns=["Fecha", "Total Venta Día"])
+    else:
+        resumen = detalle.groupby(["Fecha", "Servicio", "Dieta"]).agg({
+            "Cantidad": "sum",
+            "Valor Total": "sum"
     }).reset_index()
+
+    total_diario = resumen.groupby("Fecha")["Valor Total"].sum().reset_index()
+    total_diario.columns = ["Fecha", "Total Venta Día"]
+
 
     resumen.to_excel("static/totalizacion.xlsx", index=False)
 

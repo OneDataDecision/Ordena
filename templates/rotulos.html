@@ -100,6 +100,7 @@
             <a href="/" class="btn btn-secondary">← Volver al Menú</a>
         </div>
         
+        {% if pedidos %}
         <div class="d-flex flex-wrap justify-content-start">
             {% for pedido in pedidos %}
             <div class="rotulo">
@@ -114,9 +115,13 @@
             </div>
             {% endfor %}
         </div>
+        {% else %}
+        <div class="alert alert-warning text-center mt-4"></div>
+            No hay rótulos disponibles para este centro de servicio.
+        </div>
+        {% endif %}
         
-
-        <div class="text-end">
+            <div class="text-end">
             <button type="submit" class="btn btn-success">Generar Rótulos</button>
         </div>
     </form>

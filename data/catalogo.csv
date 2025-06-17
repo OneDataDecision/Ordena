@@ -5,6 +5,7 @@ Desayuno;Liquida Total;10851
 Desayuno;Liquida Clara;10310
 Desayuno;Hiposodica;8591
 Desayuno;Hipoglucida;8682
+Desayuno;Hipo Grasa;8591
 Desayuno;Hipograsa;8591
 Desayuno;Dieta Renal;5000
 Desayuno;Hipograsa;8591
@@ -54,25 +55,27 @@ Almuerzo;Renal SIN Dialisis;14100
 Almuerzo;Semiblanda;12181
 Almuerzo;Semiblanda Pequena;12181
 Almuerzo;Todo Pure;12181
-Cena;3,0 Onzas;9902
-Cena;3,5 Onzas;9902
+Cena;3.0 Onzas;9902
+Cena;3.5 Onzas;9902
 Cena;Astringente;14542
+Cena;Alta en Fibra;2891
 Cena;Blanda;14100
 Cena;Coronaria;14293
 Cena;Hepatica;15213
 Cena;Hipercalorica;18626
 Cena;Hiperproteica;18626
+Cena;Hipo Grasa;14542
 Cena;Hipograsa;14542
 Cena;Hipoglucida;14491
 Cena;Hiposodica;14542
 Cena;Liquida Clara;11013
 Cena;Liquida Total;11883
-Cena;Liquida Total 140CC;11883
-Cena;Liquida Total Miel;12563
-Cena;Liquida Total Miel 140CC;12563
-Cena;Liquida Total Miel 3,5 Onzas;9902
+Cena;Liquida Total 140 Cc;11883
+Cena;Liquida total Miel;12563
+Cena;Liquida Total Miel 140 Cc;12563
+Cena;Liquida Total Miel 3, 5 Onzas;9902
 Cena;Liquida Total Nectar;12563
-Cena;Liquida Total Necatr 140CC;12563
+Cena;Liquida Total Nectar 140 Cc;12563
 Cena;Normal;14100
 Cena;Pequena Semiblanda;12181
 Cena;Renal Dialisis;14293
@@ -83,7 +86,7 @@ Cena;Semiblanda Pequena;12181
 Cena;Todo Pure;14896
 Nueves;3,0 Onzas;4319
 Nueves;3.5 Onzas;4319
-Nueves;Alta En Fibra;2891
+Nueves;Alta en Fibra;2891
 Nueves;Astringente;4319
 Nueves;Blanda;4319
 Nueves;Coronaria;4319

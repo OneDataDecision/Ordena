@@ -39,9 +39,9 @@
         <div class="col-md-3">
             <label class="form-label">Dieta(s)</label>
             <select name="dieta" class="form-select" multiple required>
-                <option value="Blanda">Blanda</option>
-                <option value="Hiposódica">Hiposódica</option>
-                <option value="Renal">Renal</option>
+                {% for d in dietas %}
+                <option value="{{ d }}">{{ d }}</option>
+                {% endfor %}
                 <option value="Otra">Otra</option>
             </select>
         </div>
@@ -68,19 +68,25 @@
             <input type="text" name="observaciones_menaje" class="form-control">
         </div>
 
-        <div class="col-md-3 form-check mt-4">
-            <input class="form-check-input" type="checkbox" name="estado_entrega" id="estado_entrega">
-            <label class="form-check-label" for="estado_entrega">Entregado</label>
+        <div class="col-md-3 mt-4">
+            <div class="form-check p-3 border border-secondary rounded bg-light shadow-sm">
+                <input class="form-check-input" type="checkbox" name="estado_entrega" id="estado_entrega">
+                <label class="form-check-label fw-semibold" for="estado_entrega">Entregado</label>
+            </div>
         </div>
 
-        <div class="col-md-3 form-check mt-4">
-            <input class="form-check-input" type="checkbox" name="estado_recogida" id="estado_recogida">
-            <label class="form-check-label" for="estado_recogida">Recogido</label>
+        <div class="col-md-3 mt-4">
+            <div class="form-check p-3 border border-secondary rounded bg-light shadow-sm">
+                <input class="form-check-input" type="checkbox" name="estado_recogida" id="estado_recogida">
+                <label class="form-check-label fw-semibold" for="estado_recogida">Recogido</label>
+            </div>
         </div>
 
-        <div class="col-md-3 form-check mt-4">
-            <input class="form-check-input" type="checkbox" name="firmado" id="firmado">
-            <label class="form-check-label" for="firmado">Firmado por Enfermería</label>
+        <div class="col-md-3 mt-4">
+            <div class="form-check p-3 border border-secondary rounded bg-light shadow-sm">
+                <input class="form-check-input" type="checkbox" name="firmado" id="firmado">
+                <label class="form-check-label fw-semibold" for="firmado">Firmado por Enfermería</label>
+            </div>
         </div>
 
         <div class="col-12 text-center mt-4">

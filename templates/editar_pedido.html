@@ -10,46 +10,42 @@
 <div class="container mt-5">
     <div class="card shadow">
         <div class="card-header bg-warning text-dark">
-            <h3 class="mb-0">Editar pedido</h3>
+            <h4 class="mb-0">✏️ Editar Pedido</h4>
         </div>
         <div class="card-body">
-            <form action="/actualizar/{{ pedido['ID Pedido'] }}" method="post" class="row g-3">
+            <form action="/guardar_edicion/{{ pedido['ID Pedido'] }}" method="post" class="row g-3">
 
-                <div class="mb-3">
-                    <label for="paciente" class="form-label">Paciente</label>
-                    <input type="text" class="form-control" id="paciente" name="paciente" value="{{ pedido['Paciente'] }}">
-                </div>
-                
-                <div class="mb-3">
-                    <label for="pabellon" class="form-label">Pabellón</label>
-                    <input type="text" class="form-control" id="pabellon" name="pabellon" value="{{ pedido['Pabellón'] }}">
-                </div>
-                
-                <div class="mb-3">
-                    <label for="servicio" class="form-label">Servicio</label>
-                    <input type="text" class="form-control" id="servicio" name="servicio" value="{{ pedido['Servicio'] }}">
-                </div>
-                
-                <div class="mb-3">
-                    <label for="dietas" class="form-label">Dietas</label>
-                    <input type="text" class="form-control" id="dietas" name="dietas" value="{{ pedido['Dietas'] }}">
-                </div>
-                
-                <div class="mb-3">
-                     <label class="form-label">Observaciones</label>
-                     <input type="text" class="form-control" value="{{ pedido['Observaciones'] }}" readonly>
+                <div class="col-md-6">
+                    <label class="form-label">Paciente</label>
+                    <input type="text" class="form-control" value="{{ pedido['Paciente'] }}" readonly>
                 </div>
 
-                <div class="mb-3">
-                     <label for="observaciones_menaje" class="form-label">Observaciones sobre el menaje</label>
-                     <textarea class="form-control" id="observaciones_menaje" name="observaciones_menaje">{{ pedido['Observaciones Menaje'] }}</textarea>
-                </div>  
-            <div class="col-md-6">
+                <div class="col-md-6">
+                    <label class="form-label">Pabellón</label>
+                    <input type="text" class="form-control" value="{{ pedido['Pabellón'] }}" readonly>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Servicio</label>
+                    <input type="text" class="form-control" value="{{ pedido['Servicio'] }}" readonly>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Dietas</label>
+                    <input type="text" class="form-control" value="{{ pedido['Dietas'] }}" readonly>
+                </div>
+
+                <div class="col-md-12">
+                    <label class="form-label">Observaciones</label>
+                    <input type="text" class="form-control" value="{{ pedido['Observaciones'] }}" readonly>
+                </div>
+
+                <div class="col-md-6">
                     <label class="form-label">Hora Entrega</label>
                     <input type="time" name="hora_entrega" value="{{ pedido['Hora Entrega Real'] }}" class="form-control">
                 </div>
-                
-            <div class="col-md-6">
+
+                <div class="col-md-6">
                     <label class="form-label">Hora Recogida</label>
                     <input type="time" name="hora_recogida" value="{{ pedido['Hora Recogida Menaje'] }}" class="form-control">
                 </div>
@@ -71,22 +67,27 @@
                     </select>
                 </div>
 
-               
+                <div class="col-md-12">
+                    <label class="form-label">Observaciones sobre el Menaje</label>
+                    <textarea class="form-control" name="observaciones" rows="2">{{ pedido['Observaciones Menaje'] }}</textarea>
+                </div>
 
                 <div class="col-md-6">
-                    <input type="checkbox" name="firmado" class="form-check-input me-2" {% if pedido['Firmado por Enfermería'] == 'Sí' %}checked{% endif %}>
-                    <label class="form-check-label">Firmado por Enfermería</label>
+                    <div class="form-check mt-2">
+                        <input class="form-check-input" type="checkbox" name="firmado" {% if pedido['Firmado por Enfermería'] == 'Sí' %}checked{% endif %}>
+                        <label class="form-check-label">Firmado por Enfermería</label>
+                    </div>
                 </div>
 
-                <div class="col-12">
-                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                    <a href="/ver_pedidos" class="btn btn-secondary ms-2">Volver</a>
+                <div class="col-12 text-end">
+                    <button type="submit" class="btn btn-primary">💾 Guardar Cambios</button>
+                    <a href="/ver_pedidos" class="btn btn-secondary ms-2">← Volver</a>
                 </div>
-
             </form>
         </div>
     </div>
 </div>
+
 {% include "footer.html" %}
 
 </body>

@@ -7,6 +7,14 @@ app.secret_key = "ordena_secret"   # ✅ Luego configuramos
 
 register_routes(app)               # ✅ Luego registramos las rutas
 
+# ✅ Redirige a login si acceden a "/" sin sesión
+@app.route("/")
+def raiz():
+    return redirect(url_for("auth.login"))
+#def index():
+ #   if "usuario" in session:
+  #      return redirect("/inicio")  # o a tu vista principal
+   # return redirect("/login")
 
 if __name__ == "__main__":
     app.run(debug=True)

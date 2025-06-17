@@ -12,12 +12,18 @@ def login():
     if request.method == "POST":
         usuario = request.form.get("usuario", "")
         clave = request.form.get("clave", "")
-        cds = request.form.get("cds", "")
+        cds_codigo = request.form.get("cds", "")
 
         if usuario == "admin" and clave == "Onedata25":
+            cds_nombre = next((item["nombre"] for item in cds_disponibles if str(item["codigo"]) == cds_codigo), "CDS desconocido")
+
             session["usuario"] = usuario
-            session["cds"] = cds
-            return redirect("/inicio")
+            session["cds"] = cds_codigo
+            session["cds_nombre"] = cds_nombre  # ✅ Útil para mostrarlo luego
+
+            return redirect(url_for("pedidos.inicio"))
+
+
         else:
             return render_template("login.html", cds=cds_disponibles, error="Credenciales incorrectas")
 
