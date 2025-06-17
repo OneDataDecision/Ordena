@@ -44,6 +44,14 @@
         </div>
     </form>
 
+    {% if mensaje %}
+    <div class="alert alert-warning text-center">
+        {{ mensaje }}
+    </div>
+    {% endif %}
+
+<table class="table table-bordered table-striped table-sm">
+
     <table class="table table-bordered table-sm table-striped">
         <thead class="table-warning text-center">
             <tr>

@@ -1,0 +1,55 @@
+{% extends 'layout/base.html' %}
+{% block title %}Catálogo de Dietas{% endblock %}
+
+{% block content %}
+<form method="get" class="row mb-4">
+    <div class="col-md-4">
+        <label for="servicio" class="form-label">Servicio</label>
+        <select name="servicio" class="form-select">
+            <option value="">-- Todos --</option>
+            {% for s in servicios %}
+                <option value="{{ s }}" {% if s == servicio_actual %}selected{% endif %}>{{ s }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-4">
+        <label for="dieta" class="form-label">Dieta</label>
+        <select name="dieta" class="form-select">
+            <option value="">-- Todas --</option>
+            {% for d in dietas %}
+                <option value="{{ d }}" {% if d == dieta_actual %}selected{% endif %}>{{ d }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-4 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary w-100">Filtrar</button>
+    </div>
+</form>
+<div class="mt-4 text-center">
+    <a href="{{ url_for('inicio.vista_inicio') }}" class="btn btn-secondary">Volver al Menú</a>
+</div>
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Catálogo de Dietas</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped">
+            <thead class="table-dark">
+                <tr>
+                    {% for col in catalogo[0].keys() %}
+                        <th>{{ col }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for fila in catalogo %}
+                    <tr>
+                        {% for valor in fila.values() %}
+                            <td>{{ valor }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

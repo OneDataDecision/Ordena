@@ -12,6 +12,8 @@ def reporte_diario():
     DATA_FILE = os.path.join("data", "pedidos.csv")
     df = pd.read_csv(DATA_FILE, sep=";", encoding="latin1")
     df["Fecha Solicitud"] = pd.to_datetime(df["Fecha Solicitud"])
+    cds_usuario = session.get("cds", "desconocido")
+    df = df[df["CDS"] == cds_usuario]
 
     catalogo = cargar_catalogo()
     catalogo["Dieta_Normalizada"] = catalogo["Dieta"].apply(normalizar)
@@ -45,6 +47,12 @@ def reporte_diario():
                 "Valor Total": row["Valor Total"]
             })
     detalle = pd.DataFrame(filas)
+    if detalle.empty:
+        return render_template("reporte_diario.html", resumen=[], resumen_total=[],
+                           servicios=[], dietas=[],
+                           fecha_ini="", fecha_fin="",
+                           servicio_actual="Todos", dieta_actual="Todas",
+                           mensaje="No hay datos disponibles para el CDS actual.")
 
     resumen_total = detalle.groupby(["Fecha", "Servicio", "Dieta"]).agg({
         "Cantidad": "sum",
@@ -88,11 +96,16 @@ def reporte_diario():
                            fecha_ini=fecha_ini, fecha_fin=fecha_fin,
                            servicio_actual=servicio_filtro,
                            dieta_actual=dieta_filtro)
+
 @reportes_bp.route("/orden_produccion", methods=["GET", "POST"])
 def orden_produccion():
     DATA_FILE = os.path.join("data", "pedidos.csv")
     df = pd.read_csv(DATA_FILE, sep=";", encoding="latin1")
+    cds_usuario = session.get("cds", "desconocido")
+    df = df[df["CDS"] == cds_usuario]  # ✅ Filtrar por CDS activo
+
     df["Fecha Solicitud"] = pd.to_datetime(df["Fecha Solicitud"]).dt.date
+    
 
     filas = []
     for _, row in df.iterrows():
@@ -107,6 +120,12 @@ def orden_produccion():
             })
 
     detalle = pd.DataFrame(filas)
+    if detalle.empty:
+        return render_template("reporte_diario.html", resumen=[], resumen_total=[],
+                           servicios=[], dietas=[],
+                           fecha_ini="", fecha_fin="",
+                           servicio_actual="Todos", dieta_actual="Todas",
+                           mensaje="No hay datos disponibles para el CDS actual.")
 
     if request.method == "POST":
         fecha_ini = request.form.get("fecha_ini")
