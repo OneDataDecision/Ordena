@@ -5,8 +5,16 @@ from datetime import datetime
 
 rotulos_bp = Blueprint("rotulos", __name__)
 
+@rotulos_bp.route("/generar_rotulos", methods=["POST"])
+def generar_rotulos():
+    # Aquí va la lógica para generar archivo de rótulos o descargar PDF/Excel
+    return "Generación de rótulos aún no implementada"
+    
+    #lógica para generar archivo de rótulos
+
 @rotulos_bp.route("/rotulos", methods=["GET", "POST"])
 def rotulos():
+    
     
     df = pd.read_csv("data/pedidos.csv", sep=";", encoding="latin1")
 
@@ -31,7 +39,14 @@ def rotulos():
         servicio_filtro = "Todos"
         dieta_filtro = "Todas"
 
+    
     detalle = df.copy()
+
+    # ✅ Asegurar que no haya NaN en columnas de filtrado
+    detalle["Dietas"] = detalle["Dietas"].fillna("")
+    detalle["Servicio"] = detalle["Servicio"].fillna("")
+
+    # 🧠 Filtros seguros
     if fecha_ini:
         detalle = detalle[detalle["Fecha Solicitud"] >= pd.to_datetime(fecha_ini).date()]
     if fecha_fin:
